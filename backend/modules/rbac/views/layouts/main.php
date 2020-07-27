@@ -17,7 +17,7 @@ $this->registerCssFile($url.'/main.css');
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?></title>
+        <title><?= Html::encode($this->title) ?>-rbacmain</title>
         <?php $this->head() ?>
     </head>
     <body>
@@ -42,9 +42,12 @@ $this->registerCssFile($url.'/main.css');
         NavBar::end();
         ?>
 
+
+        <span>1111111111111111111</span>
         <div class="container">
             <?= $content ?>
         </div>
+        <span>2222222222222222222</span>
 
         <footer class="footer">
             <div class="container">
