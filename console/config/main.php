@@ -38,6 +38,10 @@ return [
             'charset' => 'utf8',
             'tablePrefix' => 'tp_',   //加入前缀名称
         ],
+
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
     ],
     'params' => $params,
 ];
