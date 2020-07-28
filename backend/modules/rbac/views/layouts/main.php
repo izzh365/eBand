@@ -43,11 +43,11 @@ $this->registerCssFile($url.'/main.css');
         ?>
 
 
-        <span>1111111111111111111</span>
+        <span>这是rbac旧layout</span>
         <div class="container">
             <?= $content ?>
         </div>
-        <span>2222222222222222222</span>
+        <span>这是rbac旧layout</span>
 
         <footer class="footer">
             <div class="container">
