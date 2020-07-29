@@ -26,7 +26,7 @@ use yii\web\IdentityInterface;
  *
  * @property UserProfile $profile
  */
-class User extends ActiveRecord implements IdentityInterface
+class Admin extends ActiveRecord implements IdentityInterface
 {
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 10;

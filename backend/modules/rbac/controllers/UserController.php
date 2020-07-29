@@ -59,6 +59,18 @@ class UserController extends Controller
         return false;
     }
 
+    public function actions()
+    {
+        return [
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'minLength' => 4,
+                'maxLength' => 4
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -116,6 +128,7 @@ class UserController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = 'main-empty';
         if (!Yii::$app->getUser()->isGuest) {
             return $this->goHome();
         }

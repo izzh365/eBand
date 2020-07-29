@@ -10,7 +10,9 @@ return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'language'=>'zh-cn',
+    'language'=>'zh-CN',
+    'timeZone' =>'Asia/Shanghai',
+    'defaultRoute' => 'rbac/user/login',
     'bootstrap' => ['log'],
     'modules' => [
         'admin' => [
@@ -27,7 +29,7 @@ return [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
-            'identityClass' => 'backend\modules\rbac\models\Admin',
+            'identityClass' => 'backend\modules\rbac\models\User',
             'enableAutoLogin' => false,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
             //'identityClass' => 'mdm\admin\models\User',
