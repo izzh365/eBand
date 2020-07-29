@@ -68,6 +68,7 @@ class AssignmentController extends Controller
             $dataProvider = $searchModel->search(Yii::$app->getRequest()->getQueryParams());
         }
 
+
         return $this->render('index', [
                 'dataProvider' => $dataProvider,
                 'searchModel' => $searchModel,

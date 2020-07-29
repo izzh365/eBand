@@ -36,7 +36,8 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function tableName()
     {
-        return Configs::instance()->userTable;
+        //return Configs::instance()->userTable;
+        return '{{%Admin}}';
     }
 
     /**

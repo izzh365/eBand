@@ -27,11 +27,11 @@ return [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
-            'identityClass' => 'backend\models\User',
-            'enableAutoLogin' => true,
+            'identityClass' => 'backend\modules\rbac\models\Admin',
+            'enableAutoLogin' => false,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
             //'identityClass' => 'mdm\admin\models\User',
-            //'loginUrl' => ['admin/user/login'],
+            'loginUrl' => ['rbac/user/login'],
 
         ],
         'session' => [
@@ -75,10 +75,6 @@ return [
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-            'site/*',//允许访问的节点，可自行添加
-            'admin/*',//允许所有人访问admin节点及其子节点
-            'gii/*',
-            'debug/*',
             '*'
         ]
     ],

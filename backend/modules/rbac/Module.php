@@ -109,6 +109,7 @@ class Module extends \yii\base\Module
         if (class_exists('yii\jui\JuiAsset')) {
             Yii::$container->set('backend\modules\rbac\AutocompleteAsset', 'yii\jui\JuiAsset');
         }
+
     }
 
     /**

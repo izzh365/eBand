@@ -2,11 +2,6 @@
 
 use yii\helpers\Html;
 
-use backend\modules\rbac\components\MenuHelper;
-use yii\bootstrap\Nav;
-use mdm\admin\components\Helper;
-
-
 /* @var $this \yii\web\View */
 /* @var $content string */
 
@@ -17,16 +12,10 @@ foreach ($menus as $i => $menu) {
     $menus[$i]['active'] = strpos($route, trim($menu['url'][0], '/')) === 0;
 }
 $this->params['nav-items'] = $menus;
-
-
-
-
 ?>
 <?php $this->beginContent($controller->module->mainLayout) ?>
 <div class="row">
-
     <div class="col-sm-3">
-        <span>这是rbac left-menu</span>
         <div id="manager-menu" class="list-group">
             <?php
             foreach ($menus as $menu) {
@@ -40,7 +29,7 @@ $this->params['nav-items'] = $menus;
             ?>
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-9">
         <?= $content ?>
     </div>
 </div>
