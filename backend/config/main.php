@@ -12,7 +12,7 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'language'=>'zh-CN',
     'timeZone' =>'Asia/Shanghai',
-    'defaultRoute' => 'rbac/user/login',
+    'defaultRoute' => 'site/index',
     'bootstrap' => ['log'],
     'modules' => [
         'admin' => [
@@ -77,7 +77,7 @@ return [
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-            '*'
+            'site/index2'
         ]
     ],
     'params' => $params,
