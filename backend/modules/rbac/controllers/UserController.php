@@ -36,7 +36,7 @@ class UserController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
-                    'logout' => ['post'],
+                    'logout' => ['get'],
                     'activate' => ['post'],
                 ],
             ],
@@ -138,7 +138,7 @@ class UserController extends Controller
             return $this->goBack();
         } else {
             return $this->render('login', [
-                    'model' => $model,
+                'model' => $model,
             ]);
         }
     }
@@ -149,6 +149,7 @@ class UserController extends Controller
      */
     public function actionLogout()
     {
+        $this->layout = 'main-empty';
         Yii::$app->getUser()->logout();
 
         return $this->goHome();

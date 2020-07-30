@@ -77,7 +77,7 @@ class Configs extends \backend\modules\rbac\BaseObject
     /**
      * @var string Menu table name.
      */
-    public $userTable = '{{%user}}';
+    public $userTable = '{{%admin}}';
 
     /**
      * @var integer Default status user signup. 10 mean active.

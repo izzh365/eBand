@@ -15,10 +15,10 @@ return [
     'defaultRoute' => 'site/index',
     'bootstrap' => ['log'],
     'modules' => [
-        'admin' => [
-            'class' => 'mdm\admin\Module',
-            'layout' => 'left-menu',//yii2-admin的导航菜单
-        ],
+//        'admin' => [
+//            'class' => 'mdm\admin\Module',
+//            'layout' => 'left-menu',//yii2-admin的导航菜单
+//        ],
         'rbac' => [
             'class' => 'backend\modules\rbac\Module',
             'layout' => 'left-menu',//yii2-admin的导航菜单
@@ -70,14 +70,20 @@ return [
             'tablePrefix' => 'tp_',   //加入前缀名称
         ],
         'authManager' => [
-            'class' => 'yii\rbac\PhpManager', // or use 'yii\rbac\DbManager'
+            'class' => 'yii\rbac\DbManager',
         ]
 
     ],
     'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
+        'class' => 'backend\modules\rbac\components\AccessControl',
         'allowActions' => [
-            'site/index2'
+            'rbac/user/captcha',//登录验证码
+            'debug/*',          //线上环境不得存在此规则
+            'yii/*',            //线上环境不得存在此规则
+            'rbac/user/login',
+            'rbac/user/logout',
+            'site/error',
+            //'*',
         ]
     ],
     'params' => $params,

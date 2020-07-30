@@ -42,14 +42,14 @@ AppAsset::register($this);
                 <li class="layui-nav-item">
                     <a href="javascript:;">
                         <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                        izzh
+<!--                        --><?//=Yii::$app->user->identity->username?>zzz
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a href="">基本资料</a></dd>
                         <dd><a href="">安全设置</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">退出</a></li>
+                <li class="layui-nav-item"><a href="<?=Url::to(['/rbac/user/logout'])?>">退出</a></li>
             </ul>
         </div>
 

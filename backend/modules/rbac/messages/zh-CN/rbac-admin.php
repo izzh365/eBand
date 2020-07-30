@@ -65,4 +65,6 @@ return [
     'Menu' => '菜单',
     'Help' => '帮助',
     'Application' => '应用',
+    'Search for assigned' => '搜索已分配的',
+    'Search for available' => '搜索可用的',
 ];

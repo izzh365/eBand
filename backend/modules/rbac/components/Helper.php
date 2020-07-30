@@ -114,7 +114,6 @@ class Helper
             $user = Yii::$app->getUser();
         }
         $userId = $user instanceof User ? $user->getId() : $user;
-
         if ($config->strict) {
             if ($user->can($r, $params)) {
                 return true;
