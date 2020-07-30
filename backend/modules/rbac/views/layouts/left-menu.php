@@ -19,9 +19,9 @@ foreach ($menus as $i => $menu) {
 $this->params['nav-items'] = $menus;
 
 //var_dump(Yii::$app->user->id);
-
-//var_dump("<pre>");
 //
+//echo "<br/>";
+//echo "<pre>";
 //var_dump(MenuHelper::getAssignedMenu(Yii::$app->user->id));
 //exit;
 
