@@ -5,7 +5,8 @@ use yii\helpers\Html;
 use backend\modules\rbac\components\MenuHelper;
 use yii\bootstrap\Nav;
 use mdm\admin\components\Helper;
-
+use yii\widgets\Menu;
+use backend\modules\rbac\widgets\Menus;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -19,17 +20,19 @@ foreach ($menus as $i => $menu) {
 $this->params['nav-items'] = $menus;
 
 //var_dump(Yii::$app->user->id);
-//
+////
 //echo "<br/>";
 //echo "<pre>";
-//var_dump(MenuHelper::getAssignedMenu(Yii::$app->user->id));
+//print_r(MenuHelper::getAssignedMenu(Yii::$app->user->id));
+////echo Nav::widget([
+////    'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id)
+////]);
 //exit;
 
 
 ?>
 <?php $this->beginContent($controller->module->mainLayout) ?>
 <div class="row">
-
     <div class="col-sm-3">
         <span>这是rbac left-menu</span>
         <div id="manager-menu" class="list-group">

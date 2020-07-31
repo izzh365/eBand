@@ -22,65 +22,13 @@ AppAsset::register($this);
     <body class="layui-layout-body">
     <?php $this->beginBody() ?>
     <div class="layui-layout layui-layout-admin">
-        <div class="layui-header">
-            <div class="layui-logo">elinksmart-手环</div>
-            <!-- 头部区域（可配合layui已有的水平导航） -->
-            <ul class="layui-nav layui-layout-left">
-                <li class="layui-nav-item">
-                    <a href="javascript:;">系统设置</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="">管理员列表</a></dd>
-                        <dd><a href="">分配</a></dd>
-                        <dd><a href="">角色列表</a></dd>
-                        <dd><a href="">权限列表</a></dd>
-                        <dd><a href="">路由列表</a></dd>
-                        <dd><a href="">规则列表</a></dd>
-                    </dl>
-                </li>
-            </ul>
-            <ul class="layui-nav layui-layout-right">
-                <li class="layui-nav-item">
-                    <a href="javascript:;">
-                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-<!--                        --><?//=Yii::$app->user->identity->username?>zzz
-                    </a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="">基本资料</a></dd>
-                        <dd><a href="">安全设置</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item"><a href="<?=Url::to(['/rbac/user/logout'])?>">退出</a></li>
-            </ul>
-        </div>
+        <!--这是头部-->
+        <?=$this->render('_header')?>
+        <!--这是头部-->
 
-        <div class="layui-side layui-bg-black">
-            <div class="layui-side-scroll">
-                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-                <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-                    <li class="layui-nav-item layui-nav-itemed">
-                        <a class="" href="javascript:;">权限管理</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="">管理员列表</a></dd>
-                            <dd><a href="">分配</a></dd>
-                            <dd><a href="">角色列表</a></dd>
-                            <dd><a href="">权限列表</a></dd>
-                            <dd><a href="">路由列表</a></dd>
-                            <dd><a href="">规则列表</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a href="javascript:;">菜单二</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">列表一</a></dd>
-                            <dd><a href="javascript:;">列表二</a></dd>
-                            <dd><a href="">超链接</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item"><a href="">菜单三</a></li>
-                    <li class="layui-nav-item"><a href="">菜单四</a></li>
-                </ul>
-            </div>
-        </div>
+        <!--这是左侧菜单-->
+        <?=$this->render('_menu')?>
+        <!--这是左侧菜单 end-->
 
         <div class="layui-body">
             <!-- 内容主体区域 -->
