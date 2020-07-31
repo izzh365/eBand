@@ -53,18 +53,27 @@ class Menu extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['parent_name'], 'in',
-                'range' => static::find()->select(['name'])->column(),
-                'message' => 'Menu "{value}" not found.'],
+//            [['parent_name'], 'in',
+//                'range' => static::find()->select(['name'])->column(),
+//                'message' => '菜单 "{value}" 没有找到.'],
             [['parent', 'route', 'data', 'order'], 'default'],
             [['parent'], 'filterParent', 'when' => function() {
                 return !$this->isNewRecord;
             }],
+            ['parent','filterParentValue'],
             [['order'], 'integer'],
             [['route'], 'in',
                 'range' => static::getSavedRoutes(),
-                'message' => 'Route "{value}" not found.']
+                'message' => '路由 "{value}" 没有找到.'],
         ];
+    }
+
+
+    public function filterParentValue($attribute, $params)
+    {
+       if($this->$attribute == 0){
+           $this->$attribute = null;
+       }
     }
 
     /**

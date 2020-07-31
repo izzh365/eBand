@@ -9,13 +9,15 @@ use backend\modules\rbac\AutocompleteAsset;
 /* @var $this yii\web\View */
 /* @var $model mdm\admin\models\Menu */
 /* @var $form yii\widgets\ActiveForm */
-AutocompleteAsset::register($this);
-$opts = Json::htmlEncode([
-        'menus' => Menu::getMenuSource(),
-        'routes' => Menu::getSavedRoutes(),
-    ]);
-$this->registerJs("var _opts = $opts;");
-$this->registerJs($this->render('_script.js'));
+
+
+//AutocompleteAsset::register($this);
+//$opts = Json::htmlEncode([
+//        'menus' => Menu::getMenuSource(),
+//        'routes' => Menu::getSavedRoutes(),
+//    ]);
+//$this->registerJs("var _opts = $opts;");
+//$this->registerJs($this->render('_script.js'));
 ?>
 
 <div class="menu-form">
@@ -24,10 +26,8 @@ $this->registerJs($this->render('_script.js'));
     <div class="row">
         <div class="col-sm-6">
             <?= $form->field($model, 'name')->textInput(['maxlength' => 128]) ?>
-
-            <?= $form->field($model, 'parent_name')->textInput(['id' => 'parent_name']) ?>
-
-            <?= $form->field($model, 'route')->textInput(['id' => 'route']) ?>
+            <?=$form->field($model,'parent')->dropDownList($menus) ?>
+            <?=$form->field($model,'route')->dropDownList($routes) ?>
         </div>
         <div class="col-sm-6">
             <?= $form->field($model, 'order')->input('number') ?>

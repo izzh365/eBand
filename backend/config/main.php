@@ -83,7 +83,7 @@ return [
             'rbac/user/login',
             'rbac/user/logout',
             'site/error',
-            //'*',
+            '*',
         ]
     ],
     'params' => $params,

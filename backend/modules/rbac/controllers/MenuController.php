@@ -2,6 +2,7 @@
 
 namespace backend\modules\rbac\controllers;
 
+use backend\modules\rbac\models\Route;
 use Yii;
 use backend\modules\rbac\models\Menu;
 use backend\modules\rbac\models\searchs\Menu as MenuSearch;
@@ -74,8 +75,29 @@ class MenuController extends Controller
             Helper::invalidate();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+
+            //菜单列表
+            $menus = Menu::find()->select(['id','name'])->asArray()->all();
+            $menusLists = [];
+            $menusLists[0]='空';
+            foreach ($menus as $item){
+                $menusLists[$item['id']] = $item['name'];
+            }
+            //路由列表
+            $routeModel = new Route();
+            $routes = $routeModel->getRoutes();
+            $routesLists = [];
+
+            foreach ($routes['assigned'] as $item){
+                if(strripos($item,'*') ===false){
+                    $routesLists[$item] = $item;
+                }
+            }
+
             return $this->render('create', [
                     'model' => $model,
+                    'menus'=>$menusLists,
+                    'routes' =>$routesLists,
             ]);
         }
     }
@@ -89,15 +111,47 @@ class MenuController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
         if ($model->menuParent) {
             $model->parent_name = $model->menuParent->name;
         }
+
+
+
+//        echo "<pre>";
+//        var_dump(Yii::$app->request->post());
+//        echo '++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++';
+//        $model->load(Yii::$app->request->post());
+//
+//        var_dump($model);
+//        exit;
+
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Helper::invalidate();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            //菜单列表
+            $menus = Menu::find()->select(['id','name'])->where(['!=','id',$id])->asArray()->all();
+            $menusLists = [];
+            $menusLists[0]='空';
+            foreach ($menus as $item){
+                $menusLists[$item['id']] = $item['name'];
+            }
+            //路由列表
+            $routeModel = new Route();
+            $routes = $routeModel->getRoutes();
+            $routesLists = [];
+            foreach ($routes['assigned'] as $item){
+                if(strripos($item,'*') ===false){
+                    $routesLists[$item] = $item;
+                }
+            }
+
             return $this->render('update', [
                     'model' => $model,
+                    'menus'=>$menusLists,
+                    'routes' =>$routesLists,
             ]);
         }
     }
