@@ -89,9 +89,11 @@ class MenuController extends Controller
             $routesLists = [];
 
             foreach ($routes['assigned'] as $item){
+                $routesLists[0] = '空';
                 if(strripos($item,'*') ===false){
                     $routesLists[$item] = $item;
                 }
+
             }
 
             return $this->render('create', [
@@ -143,6 +145,7 @@ class MenuController extends Controller
             $routes = $routeModel->getRoutes();
             $routesLists = [];
             foreach ($routes['assigned'] as $item){
+                $routesLists[0] = '空';
                 if(strripos($item,'*') ===false){
                     $routesLists[$item] = $item;
                 }

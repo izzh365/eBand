@@ -62,18 +62,24 @@ class Menu extends \yii\db\ActiveRecord
             }],
             ['parent','filterParentValue'],
             [['order'], 'integer'],
-            [['route'], 'in',
-                'range' => static::getSavedRoutes(),
-                'message' => '路由 "{value}" 没有找到.'],
+            ['route','filterRouteValue'],
         ];
     }
 
 
     public function filterParentValue($attribute, $params)
     {
-       if($this->$attribute == 0){
+       if(empty($this->$attribute)){
            $this->$attribute = null;
        }
+    }
+    public function filterRouteValue($attribute,$params)
+    {
+
+        if(empty($this->$attribute)){
+
+            $this->$attribute = null;
+        }
     }
 
     /**

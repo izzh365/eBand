@@ -27,7 +27,7 @@ use backend\modules\rbac\AutocompleteAsset;
         <div class="col-sm-6">
             <?= $form->field($model, 'name')->textInput(['maxlength' => 128]) ?>
             <?=$form->field($model,'parent')->dropDownList($menus) ?>
-            <?=$form->field($model,'route')->dropDownList($routes) ?>
+            <?=$form->field($model,'route')->dropDownList($routes)->label('路由（空路由，菜单将不显示）') ?>
         </div>
         <div class="col-sm-6">
             <?= $form->field($model, 'order')->input('number') ?>

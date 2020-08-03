@@ -15,13 +15,9 @@ return [
     'defaultRoute' => 'site/index',
     'bootstrap' => ['log'],
     'modules' => [
-//        'admin' => [
-//            'class' => 'mdm\admin\Module',
-//            'layout' => 'left-menu',//yii2-admin的导航菜单
-//        ],
         'rbac' => [
             'class' => 'backend\modules\rbac\Module',
-            'layout' => 'left-menu',//yii2-admin的导航菜单
+            //'layout' => 'left-menu',//临时使用的备用菜单
         ],
     ],
     'components' => [
@@ -83,7 +79,7 @@ return [
             'rbac/user/login',
             'rbac/user/logout',
             'site/error',
-            '*',
+            //'*',
         ]
     ],
     'params' => $params,

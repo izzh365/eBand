@@ -130,6 +130,8 @@ class Menus extends \yii\widgets\Menu
      */
     public $params;
 
+    public $activeParentCssClass = '';
+
 
     /**
      * Renders the menu.
@@ -143,6 +145,9 @@ class Menus extends \yii\widgets\Menu
             $this->params = Yii::$app->request->getQueryParams();
         }
         $items = $this->normalizeItems($this->items, $hasActiveChild);
+
+//        echo '<pre>';
+//        var_dump($items);exit;
         if (!empty($items)) {
             $options = $this->options;
             $tag = ArrayHelper::remove($options, 'tag', 'ul');
@@ -156,16 +161,26 @@ class Menus extends \yii\widgets\Menu
      * @param array $items the menu items to be rendered recursively
      * @return string the rendering result
      */
-    protected function renderItems($items)
+    protected function renderItems($items,$children = false)
     {
         $n = count($items);
         $lines = [];
         foreach ($items as $i => $item) {
-            $options = array_merge($this->itemOptions, ArrayHelper::getValue($item, 'options', []));
+
+            if(!$children){
+                $options = array_merge($this->itemOptions, ArrayHelper::getValue($item, 'options', []));
+            }else{
+                $options = ArrayHelper::getValue($item,'options',[]);
+            }
             $tag = ArrayHelper::remove($options, 'tag', 'li');
+
             $class = [];
             if ($item['active']) {
-                $class[] = $this->activeCssClass;
+                if(isset($item['items']) && !empty($item['items']) ){
+                    $class[] = $this->activeParentCssClass;
+                }else{
+                    $class[] = $this->activeCssClass;
+                }
             }
             if ($i === 0 && $this->firstItemCssClass !== null) {
                 $class[] = $this->firstItemCssClass;
@@ -173,18 +188,22 @@ class Menus extends \yii\widgets\Menu
             if ($i === $n - 1 && $this->lastItemCssClass !== null) {
                 $class[] = $this->lastItemCssClass;
             }
+
+
             Html::addCssClass($options, $class);
 
             $menu = $this->renderItem($item);
             if (!empty($item['items'])) {
                 $submenuTemplate = ArrayHelper::getValue($item, 'submenuTemplate', $this->submenuTemplate);
+
                 $menu .= strtr($submenuTemplate, [
-                    '{items}' => $this->renderItems($item['items']),
+                    '{items}' => $this->renderItems($item['items'],true),
                 ]);
             }
-            $lines[] = Html::tag($tag, $menu, $options);
-        }
 
+            $lines[] = Html::tag($tag, $menu, $options);
+
+        }
         return implode("\n", $lines);
     }
 
@@ -198,7 +217,6 @@ class Menus extends \yii\widgets\Menu
     {
         if (isset($item['url'])) {
             $template = ArrayHelper::getValue($item, 'template', $this->linkTemplate);
-
             return strtr($template, [
                 '{url}' => Html::encode(Url::to($item['url'])),
                 '{label}' => $item['label'],
@@ -241,6 +259,7 @@ class Menus extends \yii\widgets\Menu
                     }
                 }
             }
+
             if (!isset($item['active'])) {
                 if ($this->activateParents && $hasActiveChild || $this->activateItems && $this->isItemActive($item)) {
                     $active = $items[$i]['active'] = true;
@@ -253,6 +272,8 @@ class Menus extends \yii\widgets\Menu
                 $active = true;
             }
         }
+
+
 
         return array_values($items);
     }
